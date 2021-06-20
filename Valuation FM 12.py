@@ -1,52 +1,53 @@
 import time
-inicio = ''
-while inicio.lower() not in ('n','sair'):
-    
-    #Informações do jogador
-    nome = input('Nome do Jogador: ')
+
+print('Informe os dados relativos ao jogador e a data atual do jogo\n')
+
+while True:
+    # Informações do Jogador
+    ano_atual = int(input('Ano atual: '))
+    mes_atual = int(input('Mês atual (número do mês): '))
+    nome = input('Nome do jogador: ')
     idade = int(input('Idade: '))
-    valor_mercado = int(input('Valor de mercado: '))
-    anos_cumpridos = int(input('Anos de contrato já cumpridos: '))
-    potencial = input('Potencial? "s" ou "n": ')
-    importante = int(input('De 0 a 5 nível de importância na equipe, tática, etc: '))
-    vender = input('Precisa vender rápido? "s" ou "n": ')
+    valor_mercado = float(input('Valor de mercado atual: '))
+    ano_fim_contrato = int(input('Ano de fim de contrato: '))
+    mes_fim_contrato = int(input('Mês de fim de contrato (número do mês): '))
+    potencial = int(input('Grau de potencial de evolução do jogador (1 a 5): '))
+    importancia = int(input('Grau de importância na equipe (1 a 5): '))
+    substituir = int(input('Grau de dificuldade em substituí-lo (1 a 5): '))
 
-    #Venda sem pressa com valorização
-    if vender.lower() in ('n'):
-        #Multiplicativo de Valor
-        importante = importante / 20
-        if potencial.lower() in ('s'):
-            multiplicativo = 0.6 + importante
-        else:
-            multiplicativo = 0.25 + importante
-
-        valor_primario = valor_mercado * (1 + multiplicativo)
-
-        #Análise de idade
-        if idade < 28 and potencial.lower() in ('s'):
-            valor_secundario = valor_primario + 2500000 * (28 - idade)
-        elif idade > 28:
-            valor_secundario = valor_primario - 2000000 * (idade - 28)
-        else:
-            valor_secundario = valor_primario
-
-        #Análise de contrato
-        valor_final = valor_secundario * (1 - 0.04 * anos_cumpridos)
-
-    #Venda rápida sem valorização
+    # Mark-ups
+    if idade < 25:
+        mkp_idade = 0.4
+    elif idade < 30:
+        mkp_idade = 0.1
     else:
-        if idade < 28 and potencial.lower() in ('s'):
-            valor_secundario = valor_mercado + 2000000 * (28 - idade)
-        elif idade > 28:
-            valor_secundario = valor_mercado - 2000000 * (idade - 28)
-        else:
-            valor_secundario = valor_mercado
+        mkp_idade = -0.3
 
-        #Análise de contrato
-        valor_final = valor_secundario * (1 - 0.08 * anos_cumpridos)
+    meses_restantes = 12 * (ano_fim_contrato - ano_atual) + mes_fim_contrato - mes_atual
+    if meses_restantes < 11:
+        mkp_meses = -0.3
+    elif meses_restantes < 23:
+        mkp_meses = -0.15
+    elif meses_restantes < 35:
+        mkp_meses = 0.05
+    elif meses_restantes < 47:
+        mkp_meses = 0.1
+    else:
+        mkp_meses = 0.2
 
-    #Fim ou recomeço
-    print('\n{} vale cerca de: R${} de reais'.format(nome, valor_final))
-    inicio = input('Refazer? Se deseja sair do Valuation FM 12, digite "n".')
-    print('Volte sempre!!')
-    time.sleep(1)
+    mkp_potencial = ['', -0.1, -0.05, 0.05, 0.3, 0.5]
+    mkp_importancia = ['', -0.35, -0.15, 0.05, 0.2, 0.45]
+    mkp_substituivel = ['', -0.4, -0.25, 0.05, 0.3, 0.5]
+
+    # Valor final de venda
+    mkp_total = mkp_idade + mkp_meses + mkp_potencial[potencial] + mkp_importancia[importancia] + mkp_substituivel[substituir]
+    valor_venda = valor_mercado * (1 + mkp_total)
+    milhao = int(valor_venda // 1000000)
+    cemmil = int((valor_venda % 1000000) // 1000)
+    centena = int((valor_venda % 1000000) % 1000)
+    time.sleep(2)
+    print('{} milhões {} mil e {} reais'.format(milhao, cemmil, centena))
+
+    fim = input('Deseja refazer? Sim [s] ou Não [n]\n> ')
+    if fim.lower() not in ('s'):
+        break
