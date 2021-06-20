@@ -15,7 +15,7 @@ I'll rewrite the code to calculate the valuation using multipliers that will giv
   O cálculo deverá ser feito com base em mark-up de transferência;
   São multiplicadores que serão adicionados ou reduzidos conforme as informações do jogador;
   Quanto mais fácil vender um jogador, maior será seu mark-up;
-
+  
 	Funcionamento:
 
   Mark-up começa valendo 1.000 e haverão acréscimos e diminuições;
@@ -23,53 +23,47 @@ I'll rewrite the code to calculate the valuation using multipliers that will giv
   O programa deve mostrar na tela ao final, o mark-up, a porcentagem que o valor de mercado sofrerá;
   Será um looping que o usuário digitará se irá refazer o cálculo;
 
-  Mark-up de Transferência:
+  		Mark-up de Transferência:
+	
+	Idade
+Vai corresponder a uma grande parcela do mark-up, tendo em vista que quanto mais velho o jogador, mais difícil de vendê-lo, logo, reduzindo seu valor de venda;
+Até 25: + 40%
+Até 30:	+ 10%
+Acima de 30: -30%
 
-  Idade
-  Vai corresponder a uma grande parcela do mark-up, tendo em vista que quanto mais velho o jogador, mais difícil de vendê-lo, logo, reduzindo seu valor de venda;
+	Potencial
+Grau de potencial que o jogador possui. Isso quer dizer que é um jogador que pode se desenvolver bem e valer mais;
+Grau de 1 até 5 de perspectiva de evolução do jogador
+1: -10%
+2: -5%
+3: 5%
+4: 30%
+5: 50%
 
-Idade	Mark-up
-Até 25 - + 40%
-Até 30 - 	+ 10%
-Acima de 30	- -30%
+	Importância
+Grau de importância no time, o quanto o jogador faz diferença para a equipe;
+Perdê-lo é um golpe duro na equipe ou será bem vindo sua saída;
+Grau de 1 até 5 de importância
+1: -35%
+2: -15%
+3: 5%
+4: 20%
+5: 45%
 
-  Potencial
-  Grau de potencial que o jogador possui. Isso quer dizer que é um jogador que pode se desenvolver bem e valer mais;
-  Digitar de 1 até 5 o potencial do jogador
-  Potencial	Mark-up
-1	- -10%
-2	- -5%
-3	- 5%
-4	- 30%
-5	- 50%
-
-  Importância
-  Grau de importância no time, o quanto o jogador faz diferença para a equipe;
-  Perdê-lo é um golpe duro na equipe ou será bem vindo sua saída;
-  Grau de 1 até 5 de importância
-Importância	Mark-up
-1	- -35%
-2	- -15%
-3	- 5%
-4	- 20%
-5	- 45%
-
-  Meses restantes de contrato
-  Quanto mais próximo do fim do contrato, menor o valor de mercado do jogador;
-  Será uma queda brusca, mas com ganhos altos caso o contrato esteja no começo; 
-Meses restantes	Mark-up
-Maior que 48	- 20%
-De 36 a 47 - 10%
-De 24 a 35 - 5%
-De 12 a 23 - -15%
-Até 11 - -30%
+	Meses restantes de contrato
+Quanto mais próximo do fim do contrato, menor o valor de mercado do jogador;
+Será uma queda brusca, mas com ganhos altos caso o contrato esteja no começo; 
+De 36 a 47: 10%
+De 24 a 35: 5%
+De 12 a 23: -15%
+Até 11: -30%
  
-  Substituível
-  O quão fácil é substituir esse jogador por outro no mercado
-  A facilidade diz que mesmo um jogador bom não preciso pedir muito, já que sua transferência pode ser compensada
-Substituível	Mark-up
-1	- 50%
-2	- 30%
-3 - 5%
-4	- -25%
-5	- -40% 
+	Substituível
+O quão fácil é substituir esse jogador por outro no mercado
+A facilidade diz que mesmo um jogador bom não preciso pedir muito, já que sua transferência pode ser compensada
+Grau de 1 até 5 de facilidade para substituir o jogador
+1: 50%
+2: 30%
+3: 5%
+4: -25%
+5: -40% 
