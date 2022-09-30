@@ -13,8 +13,8 @@ I'll rewrite the code to calculate the valuation using multipliers that will giv
   Será uma base para tomada de decisão, não o preço final a ser praticado;
   Contemplará somente informações relevantes sobre o jogador e seu futuro no clube;
   O cálculo deverá ser feito com base em mark-up de transferência;
-  São multiplicadores que serão adicionados ou reduzidos conforme as informações do jogador;
-  Quanto mais fácil vender um jogador, maior será seu mark-up;
+  São multiplicadores que irão incrementar ou decrementar o passe do jogador, conforme as informações dd mesmo;
+  Quanto mais fácil vender um jogador, maior será seu mark-up, pois mais concorrência terá.
   
 	Funcionamento:
 
